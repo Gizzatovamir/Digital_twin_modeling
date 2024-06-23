@@ -1,8 +1,9 @@
 from typing import List, Dict
-from defs import State
+from .defs import State
+
 
 class BasicModel(object):
-    def __init__(self):
+    def __init__(self, **kwargs):
         self.state: State = State.UNDEF
         self.children_models: Dict[str, BasicModel] = dict()
 
@@ -13,7 +14,7 @@ class BasicModel(object):
                     child.update_state()
 
     def check_children(self) -> State:
-        res :State = State.UNDEF
+        res: State = State.UNDEF
         for child in self.children_models.values():
             if child.state == State.VALID:
                 res = State.VALID

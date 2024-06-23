@@ -1,4 +1,5 @@
 FROM ubuntu:focal-20230308 AS builder
+USER root
 RUN apt-get update
 RUN apt-get install -y curl
 RUN apt-get install -y --no-install-recommends gcc libc-dev
@@ -9,6 +10,7 @@ RUN chmod 0755 /usr/local/bin/su-exec
 
 
 FROM ubuntu:focal-20230308
+USER root
 RUN apt-get update -q && \
     apt-get upgrade -yq && \
     DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends keyboard-configuration language-pack-en && \
@@ -23,9 +25,9 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o 
     apt-get update && \
     apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-desktop && \
     apt-get install -y --no-install-recommends python3-argcomplete python3-colcon-common-extensions python3-rosdep python3-colcon-mixin python3-vcstool && \
-    apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-gazebo-ros-pkgs ros-${ROS_DISTRO}-xacro ros-${ROS_DISTRO}-joint-state-coordinate_publisher-gui && \
+#    apt-get install -y --no-install-recommends ros-${ROS_DISTRO}-gazebo-ros-pkgs ros-${ROS_DISTRO}-xacro ros-${ROS_DISTRO}-joint-state-coordinate_publisher-gui && \
     rm -rf /var/lib/apt/lists/*
-COPY ../docker /
+COPY ./coordinate_publisher /
 RUN rosdep init && \
     rosdep update && chmod +x /ros_entrypoint.sh
 COPY --from=builder /usr/local/bin/su-exec /sbin/

@@ -14,18 +14,18 @@ import math
 _debug = True
 
 
-class ImageDataPublisher(Node):
-    def __init__(self, step_size: float):
-        super().__init__("lidar_data_publisher")
+class DataPublisher(Node):
+    def __init__(self, step_size: float, index: int = 0):
+        super().__init__(f"data_publisher_{index}")
 
         self._publisher: Publisher = self.create_publisher(
-            PointStamped, "/point_stamped", qos_profile_sensor_data
+            PointStamped, f"/point_stamped_{index}", 10
         )
         timer_period: float = 0.5
         self.step_size: float = step_size
         self.i: int = 0
-        self.a: float = 2.0
-        self.b: float = 3.0
+        self.a: float = 0
+        self.b: float = 0
         self.r: float = 10.0
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.last_timestamp: int = 0
@@ -47,12 +47,10 @@ class ImageDataPublisher(Node):
         Callback function.
         This function gets called every 0.5 seconds.
         """
-        # Create a float32array/pointcloud2 message
         msg = PointStamped()
         header: Header = Header()
-        stamp: Time = Time()
-        point = Point()
 
+        # set current timestamp
         header.stamp = self.get_clock().now().to_msg()
 
         # Set the msg data
@@ -63,10 +61,12 @@ class ImageDataPublisher(Node):
         self._publisher.publish(msg)
 
         # Display the message on the console
-        self.get_logger().info(f"Publishing: {self.i}, "
-                               f"timestamp - {header.stamp}, "
-                               f"x - {msg.point.x}, "
-                               f"y - {msg.point.y}")
+        self.get_logger().info(
+            f"Publishing: {self.i}, "
+            f"timestamp - {header.stamp}, "
+            f"x - {msg.point.x}, "
+            f"y - {msg.point.y}"
+        )
 
         # Increment the counter by 1
         self.i += 1
@@ -74,7 +74,7 @@ class ImageDataPublisher(Node):
 
 if __name__ == "__main__":
     rclpy.init()
-    publisher = ImageDataPublisher(0.1)
+    publisher = DataPublisher(0.1)
     rclpy.spin(publisher)
     publisher.destroy_node()
     rclpy.shutdown()
