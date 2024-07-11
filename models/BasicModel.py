@@ -1,5 +1,8 @@
-from typing import List, Dict
-from .defs import State
+from typing import Dict, List, Union, TYPE_CHECKING, Callable
+from utils.defs import State
+
+if TYPE_CHECKING:
+    from models import Tile, Map, Train
 
 
 class BasicModel(object):
@@ -23,3 +26,17 @@ class BasicModel(object):
             else:
                 child.update_state()
         return res
+
+    def synthesize(
+        self,
+        n: int,
+        name: str,
+        topic_name: str,
+        child_class: Callable,
+    ):
+        for i in range(n):
+            child_topic_name = f"{topic_name}_{name}_{i}"
+            child_name = f"{name}_{i}"
+            print(child_topic_name)
+            print(child_name)
+            self.children_models[child_name] = child_class(child_name, child_topic_name)

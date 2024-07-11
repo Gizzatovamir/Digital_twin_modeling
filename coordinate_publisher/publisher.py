@@ -15,11 +15,11 @@ _debug = True
 
 
 class DataPublisher(Node):
-    def __init__(self, step_size: float, index: int = 0):
-        super().__init__(f"data_publisher_{index}")
+    def __init__(self, step_size: float, name: str, topic_name: str = ""):
+        super().__init__(f"data_publisher_" + name)
 
         self._publisher: Publisher = self.create_publisher(
-            PointStamped, f"/point_stamped_{index}", 10
+            PointStamped, topic_name if topic_name else f"/point_stamped_" + name, 10
         )
         timer_period: float = 0.5
         self.step_size: float = step_size

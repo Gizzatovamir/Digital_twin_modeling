@@ -12,10 +12,10 @@ import os
 
 
 class DataSubscriber(Node):
-    def __init__(self, name: str, index: int, **kwargs):
+    def __init__(self, name: str, **kwargs):
         super().__init__(name)
         self.subscription = self.create_subscription(
-            PointStamped, f"/point_stamped_{index}", self.point_callback, 10
+            PointStamped, f"/point_stamped_" + name, self.point_callback, 10
         )
 
     def point_callback(self, msg: PointStamped):
@@ -24,7 +24,7 @@ class DataSubscriber(Node):
 
 if __name__ == "__main__":
     rclpy.init()
-    my_subscriber = DataSubscriber("test", 0)
+    my_subscriber = DataSubscriber("test")
     print("start listening")
     rclpy.spin(my_subscriber)
 
