@@ -6,15 +6,17 @@ import rclpy
 
 class Tile(BasicModel):
     def __init__(self, config: Config, **kwargs):
-        self.config: Config = config
         super().__init__(**kwargs)
+        self.config: Config = config
+        self.name: str = "Tile_" + config.name
         self.synthesize(
-            self.config.n_children, self.config.name, self.config.topic_name, Train
+            self.config.n_children, self.config.name, self.config.topic_name, Train, call_class="train", idle=config.models_to_monitor
         )
+
 
     def delayed_update(self):
         self.synthesize(
-            self.config.n_children, self.config.name, self.config.topic_name, Train
+            self.config.n_children, self.config.name, self.config.topic_name, Train, call_class="train", idle=[]
         )
 
 

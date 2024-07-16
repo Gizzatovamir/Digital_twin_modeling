@@ -8,6 +8,7 @@ from geometry_msgs.msg import PointStamped, Point
 from rclpy.node import Node
 from collections import deque
 from utils.defs import State
+from utils.defs import state_string_dict
 
 EPS = 3
 R = 10.0
@@ -17,9 +18,10 @@ class Train(
     Node,
     BasicModel,
 ):
-    def __init__(self, name: str, topic_name: str, max_len: int = 5):
+    def __init__(self, name: str, topic_name: str, max_len: int = 5, **kwargs):
         super().__init__(name)
         self.name: str = name
+        self.children_models = {}
         self.subscription = self.create_subscription(
             PointStamped,
             topic_name if topic_name else f"/point_stamped" + name,
@@ -28,6 +30,7 @@ class Train(
         )
         self.msg_deque: deque = deque(maxlen=max_len)
         self.state: State.UNDEF = State.UNDEF
+        self.idle: bool = kwargs.get("idle", False)
 
     def point_callback(self, msg: PointStamped):
         self.msg_deque.append(msg)
@@ -37,6 +40,12 @@ class Train(
         # )
         # self.update_state()
         self.state = self.update()
+
+    def update_state(self):
+        self.state = self.update()
+        print(
+            f"Updated state - {state_string_dict.get(self.state)}, name - {self.name}"
+        )
 
     def update(self) -> State:
         def check_msg(msg) -> bool:

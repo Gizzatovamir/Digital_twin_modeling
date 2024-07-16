@@ -13,3 +13,5 @@ class State(IntEnum):
 class ChildType(IntEnum):
     TRAIN = 0
     TILE = 1
+
+state_string_dict = {0: "UNDEF", 1: "VALID", 2: "INVALID"}
