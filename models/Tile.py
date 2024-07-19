@@ -1,6 +1,7 @@
 from models.BasicModel import BasicModel
 from utils.Config import Config
 from models.Train import Train
+from typing import List
 import rclpy
 
 
@@ -14,9 +15,10 @@ class Tile(BasicModel):
         )
 
 
-    def delayed_update(self):
-        self.synthesize(
-            self.config.n_children, self.config.name, self.config.topic_name, Train, call_class="train", idle=[]
-        )
+    def delayed_update(self, target_models: List[str]):
+        for model_name in target_models:
+            self.synthesize(
+                self.config.n_children, self.config.name, self.config.topic_name, Train, call_class="train", idle=[], child_name=model_name
+            )
 
 

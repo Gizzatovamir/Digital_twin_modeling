@@ -12,6 +12,7 @@ class BasicModel(object):
         self.children_models: Dict[str, BasicModel] = dict()
         self.name: str = ""
         self.idle: bool = False
+        self.topic_name: str = ""
 
     def immediate_update(self, child_to_update: str) -> State:
         res: State = State.UNDEF
@@ -31,11 +32,14 @@ class BasicModel(object):
         state_buff: List[bool] = list()
         for child in self.children_models.values():
             if child.state == State.INVALID or child.state == State.UNDEF:
-                state_buff.append(child.check_children())
+                state_buff.append(child.update())
+            # else:
+            #     state_buff.append(True)
         self.state = State.VALID if all(state_buff) else State.INVALID
 
     def check_children(self) -> bool:
         res: bool = False
+        # [el.update() for el in self.children_models.values()]
         for child in self.children_models.values():
             if child.state == State.VALID:
                 res = True
@@ -49,7 +53,7 @@ class BasicModel(object):
         self, n: int, name: str, topic_name: str, child_class: Callable, **kwargs
     ):
         for i in range(n):
-            child_topic_name = f"{topic_name}_{name}_{i}"
+            child_topic_name = f"{topic_name}{name}_{i}"
             child_name = f"{name}_{i}"
             # print(child_topic_name)
             # print(child_name)

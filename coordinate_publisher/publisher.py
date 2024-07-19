@@ -17,11 +17,13 @@ _debug = True
 class DataPublisher(Node):
     def __init__(self, step_size: float, name: str, topic_name: str = ""):
         super().__init__(f"data_publisher_" + name)
-
+        self.name: str = f"data_publisher_" + name
+        self.topic_name  = topic_name if topic_name else f"/point_stamped_" + name
         self._publisher: Publisher = self.create_publisher(
-            PointStamped, topic_name if topic_name else f"/point_stamped_" + name, 10
+            PointStamped, self.topic_name , 10
         )
         timer_period: float = 0.5
+        print(f'publish topic - {self.topic_name}')
         self.step_size: float = step_size
         self.i: int = 0
         self.a: float = 0
@@ -62,8 +64,7 @@ class DataPublisher(Node):
 
         # Display the message on the console
         self.get_logger().info(
-            f"Publishing: {self.i}, "
-            f"timestamp - {header.stamp}, "
+            f"Publisher - {self.name}\n"
             f"x - {msg.point.x}, "
             f"y - {msg.point.y}"
         )
