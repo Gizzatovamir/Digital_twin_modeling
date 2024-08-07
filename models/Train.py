@@ -10,7 +10,7 @@ from collections import deque
 from utils.defs import State
 from utils.defs import state_string_dict
 
-EPS = 3
+EPS = 6
 R = 10.0
 
 
@@ -35,7 +35,7 @@ class Train(
         self.idle: bool = kwargs.get("idle", False)
 
     def point_callback(self, msg: PointStamped):
-        self.msg_deque.append(msg)
+        self.msg_deque.appendleft(msg)
         # print(f"I heard about pose: {msg.header.stamp}, {msg.point}")
         # print(
         #     f"State after msg - {msg.header.stamp} is {bool(self.update())}, coordinates - {msg.point.x, msg.point.y, msg.point.z}"
@@ -47,26 +47,16 @@ class Train(
         self.state = self.update()
 
     def update(self) -> State:
-        def check_msg(msg) -> bool:
+        def check_msg(input_msg) -> bool:
             # check if train is on the circle
-            cur_time = self.get_clock().now().to_msg()
-            current_timestamp = cur_time.sec + (cur_time.nanosec / 1e9)
-            msg_timestamp = msg.header.stamp.sec + (msg.header.stamp.nanosec / 1e9)
-            return current_timestamp - msg_timestamp < EPS
+            cur_time = datetime.datetime.timestamp(datetime.datetime.now())
+            msg_timestamp = input_msg.header.stamp.sec + (input_msg.header.stamp.nanosec * 1e-9)
+            return cur_time - msg_timestamp < EPS
 
         res: bool = True
         if len(self.msg_deque) < 5:
             return State.UNDEF
-        for msg in self.msg_deque:
-            res *= check_msg(msg)
+        for new_msg in self.msg_deque:
+            res *= check_msg(new_msg)
         return State.VALID if res else State.INVALID
 
-
-if __name__ == "__main__":
-
-    rclpy.init()
-    train = Train(0)
-    print("start listening")
-    rclpy.spin(train)
-    train.destroy_node()
-    rclpy.shutdown()

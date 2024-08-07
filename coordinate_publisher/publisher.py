@@ -11,6 +11,7 @@ import os
 from typing import Tuple
 import math
 
+PERIOD = 0.05
 _debug = True
 
 
@@ -22,7 +23,7 @@ class DataPublisher(Node):
         self._publisher: Publisher = self.create_publisher(
             PointStamped, self.topic_name , 10
         )
-        timer_period: float = 0.5
+        timer_period: float = PERIOD
         print(f'publish topic - {self.topic_name}')
         self.step_size: float = step_size
         self.i: int = 0

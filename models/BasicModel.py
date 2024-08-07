@@ -52,19 +52,27 @@ class BasicModel(object):
     def synthesize(
         self, n: int, name: str, topic_name: str, child_class: Callable, **kwargs
     ):
-        for i in range(n):
-            child_topic_name = f"{topic_name}{name}_{i}"
-            child_name = f"{name}_{i}"
-            # print(child_topic_name)
-            # print(child_name)
-            if kwargs["call_class"] == "train":
-                model_name = kwargs.get('idle')
-                if child_name in model_name:
-                    idle = True
+        to_synth: List[str] = kwargs.get("to_synth", [])
+        if len(to_synth) == 0:
+            for i in range(n):
+                child_topic_name = f"{topic_name}{name}_{i}"
+                child_name = f"{name}_{i}"
+                if kwargs["call_class"] == "train":
+                    model_name = kwargs.get("idle")
+                    if child_name in model_name:
+                        idle = True
+                    else:
+                        idle = False
+                    self.children_models[child_name] = child_class(
+                        child_name, child_topic_name, idle=idle
+                    )
                 else:
-                    idle = False
-                self.children_models[child_name] = child_class(
-                    child_name, child_topic_name,idle=idle
+                    self.children_models[child_name] = child_class(kwargs["config"])
+        else:
+            for child in to_synth:
+                child_instance = self.children_models[child]
+                self.children_models[child] = child_class(
+                    child_instance.name,
+                    child_instance.topic_name,
+                    idle=child_instance.idle,
                 )
-            else:
-                self.children_models[child_name] = child_class(kwargs["config"])

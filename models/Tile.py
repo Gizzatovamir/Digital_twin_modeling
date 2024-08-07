@@ -18,7 +18,7 @@ class Tile(BasicModel):
     def delayed_update(self, target_models: List[str]):
         for model_name in target_models:
             self.synthesize(
-                self.config.n_children, self.config.name, self.config.topic_name, Train, call_class="train", idle=[], child_name=model_name
+                self.config.n_children, self.config.name, self.config.topic_name, Train, call_class="train", idle=[], child_name=model_name, to_synth=[model_name]
             )
 
 
