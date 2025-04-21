@@ -24,5 +24,6 @@ physical and socio-cyber-physical systems building process. The
  of observation and creating frameworks aimed at developers of
  real systems based on Internet of Things platforms, as well as in
  the field of model training.
+ 
  Index Terms—Run-time digital twins, digital twin systems,
  digital twin synthesis, keeping the model system up-to-date.
