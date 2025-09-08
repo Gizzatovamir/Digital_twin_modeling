@@ -1,0 +1,77 @@
+A3: {
+  label: "Algorithm 3 — Background (mixed)"
+
+  Priority_Event: {
+    s1: "active" { style.fill: red }
+    s2: "done" { style.fill: green }
+
+    s1 -> s2: "Step 1A & 2A"
+  }
+
+  NonPriority_Event: {
+    s1: "active" { style.fill: red }
+    s2: "done" { style.fill: green }
+    s3: "done" { style.fill: green }
+
+    s1 -> s2: "Step 1B"
+    s2 -> s3: "Step 4B"
+  }
+
+  Train_Prior: {
+    s1: "obsolete" { style.fill: red }
+    s2: "relevant" { style.fill: green }
+
+    s1 -> s2: "Step 2A"
+  }
+
+  Train_NonPrior: {
+    s1: "obsolete" { style.fill: red }
+    s2: "building" { style.fill: orange }
+    s3: "relevant" { style.fill: green }
+
+    s1 -> s2: "Step 3B"
+    s2 -> s3: "Step 4B"
+  }
+
+  Map_Prior: {
+    s1: "waiting" { style.fill: gray }
+    s2: "correcting" { style.fill: yellow }
+
+    s1 -> s2: "Step 2A"
+  }
+
+  Map_NonPrior: {
+    s1: "obsolete" { style.fill: red }
+    s2: "building" { style.fill: orange }
+    s3: "relevant" { style.fill: green }
+
+    s1 -> s2: "Step 3B"
+    s2 -> s3: "Step 4B"
+  }
+
+  Tile: {
+    s1: "waiting" { style.fill: gray }
+    s2: "correcting" { style.fill: yellow }
+    s3: "partly obsolete" { style.fill: red }
+    s4: "background update" { style.fill: orange }
+    s5: "relevant" { style.fill: green }
+
+    s1 -> s2: "Step 2A"
+    s2 -> s3: "Step 3B"
+    s3 -> s4: "Step 4B"
+    s4 -> s5: "Step 5"
+  }
+
+  Request: {
+    s1: "idle" { style.fill: gray }
+    s2: "waiting" { style.fill: gray }
+    s3: "waiting" { style.fill: gray }
+    s4: "waiting" { style.fill: gray }
+    s5: "executing" { style.fill: yellow }
+
+    s1 -> s2: "Step 2A"
+    s2 -> s3: "Step 3B"
+    s3 -> s4: "Step 4B"
+    s4 -> s5: "Step 5"
+  }
+}

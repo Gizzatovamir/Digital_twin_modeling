@@ -1,0 +1,68 @@
+A2: {
+  label: "Algorithm 2 — Delayed"
+
+  Event: {
+    s1: "active" { style.fill: red }
+    s2: "done" { style.fill: green }
+    s3: "done" { style.fill: green }
+    s4: "done" { style.fill: green }
+    s5: "done" { style.fill: green }
+
+    s1 -> s2: "Step 1"
+    s2 -> s3: "Step 2"
+    s3 -> s4: "Step 3"
+    s4 -> s5: "Step 4"
+  }
+
+  Train: {
+    s1: "obsolete" { style.fill: red }
+    s2: "obsolete" { style.fill: red }
+    s3: "checking" { style.fill: yellow }
+    s4: "building" { style.fill: orange }
+    s5: "relevant" { style.fill: green }
+
+    s1 -> s2: "Step 2"
+    s2 -> s3: "Step 3"
+    s3 -> s4: "Step 4"
+    s4 -> s5: "Step 5"
+  }
+
+  Map: {
+    s1: "obsolete" { style.fill: red }
+    s2: "obsolete" { style.fill: red }
+    s3: "checking" { style.fill: yellow }
+    s4: "building" { style.fill: orange }
+    s5: "relevant" { style.fill: green }
+
+    s1 -> s2: "Step 2"
+    s2 -> s3: "Step 3"
+    s3 -> s4: "Step 4"
+    s4 -> s5: "Step 5"
+  }
+
+  Tile: {
+    s1: "obsolete" { style.fill: red }
+    s2: "obsolete" { style.fill: red }
+    s3: "checking" { style.fill: yellow }
+    s4: "building" { style.fill: orange }
+    s5: "relevant" { style.fill: green }
+
+    s1 -> s2: "Step 2"
+    s2 -> s3: "Step 3"
+    s3 -> s4: "Step 4"
+    s4 -> s5: "Step 5"
+  }
+
+  Request: {
+    s1: "idle" { style.fill: gray }
+    s2: "waiting" { style.fill: gray }
+    s3: "waiting" { style.fill: gray }
+    s4: "waiting" { style.fill: gray }
+    s5: "executing" { style.fill: yellow }
+
+    s1 -> s2: "Step 2"
+    s2 -> s3: "Step 3"
+    s3 -> s4: "Step 4"
+    s4 -> s5: "Step 5"
+  }
+}
