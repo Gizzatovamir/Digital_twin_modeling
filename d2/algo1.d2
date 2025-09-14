@@ -1,58 +1,67 @@
-A1: {
-  label: "Algorithm 1 — Immediate"
 
   Event: {
     s1: "active" { style.fill: red }
-    s2: "done" { style.fill: green }
-    s3: "done" { style.fill: green }
-    s4: "done" { style.fill: green }
+    s2: "done" { style.fill:  limegreen }
+    s3: "done" { style.fill:  limegreen }
+    s4: "done" { style.fill:  limegreen }
+    s5: "done" { style.fill:  limegreen }
 
-    s1 -> s2: "Step 1"
-    s2 -> s3: "Step 2"
-    s3 -> s4: "Step 3"
+    s1 -> s2: "Step  1" {style.font-size: 65} 
+    s2 -> s3: "Step 2" {style.font-size: 65} 
+    s3 -> s4: "Step 3" {style.font-size: 65} 
+    s4 -> s5: "Step 4" {style.font-size: 65} 
   }
-
-  Train: {
+  M31{
+    s0: "obsolete" { style.fill: red}
     s1: "obsolete" { style.fill: red }
     s2: "correcting" { style.fill: yellow }
-    s3: "relevant" { style.fill: green }
-    s4: "relevant" { style.fill: green }
+    s3: "relevant" { style.fill:  limegreen }
+    s4: "relevant" { style.fill:  limegreen }
 
-    s1 -> s2: "Step 2"
-    s2 -> s3: "Step 3"
-    s3 -> s4: "Step 4"
+    s0 -> s1: "Step 1" {style.font-size: 65} 
+    s1 -> s2: "Step 2" {style.font-size: 65} 
+    s2 -> s3: "Step 3" {style.font-size: 65} 
+    s3 -> s4: "Step 4" {style.font-size: 65} 
   }
 
-  Map: {
-    s1: "waiting" { style.fill: gray }
-    s2: "waiting" { style.fill: gray }
+  M21: {
+    s0: "waiting" { style.fill: lightgray }
+    s1: "waiting" { style.fill: lightgray }
+    s2: "waiting" { style.fill: lightgray }
     s3: "correcting" { style.fill: yellow }
-    s4: "relevant" { style.fill: green }
+    s4: "relevant" { style.fill:  limegreen }
 
-    s1 -> s2: "Step 2"
-    s2 -> s3: "Step 3"
-    s3 -> s4: "Step 4"
+    s0 -> s1: "Step  1" {style.font-size: 65} 
+    s1 -> s2: "Step 2" {style.font-size: 65} 
+    s2 -> s3: "Step 3" {style.font-size: 65} 
+    s3 -> s4: "Step 4" {style.font-size: 65} 
   }
-
-  Tile: {
-    s1: "waiting" { style.fill: gray }
-    s2: "waiting" { style.fill: gray }
-    s3: "waiting" { style.fill: gray }
+  
+  M11: {
+    s0: "waiting" { style.fill: lightgray }
+    s1: "waiting" { style.fill: lightgray }
+    s2: "waiting" { style.fill: lightgray }
+    s3: "waiting" { style.fill: lightgray }
     s4: "correcting" { style.fill: yellow }
 
-    s1 -> s2: "Step 2"
-    s2 -> s3: "Step 3"
-    s3 -> s4: "Step 4"
+    s0 -> s1: "Step 1" {style.font-size: 65}
+    s1 -> s2: "Step 2" {style.font-size: 65}
+    s2 -> s3: "Step 3" {style.font-size: 65} 
+    s3 -> s4: "Step 4" {style.font-size: 65} 
   }
 
   Request: {
-    s1: "idle" { style.fill: gray }
-    s2: "waiting" { style.fill: gray }
-    s3: "waiting" { style.fill: gray }
+    s0: "idle" { style.fill: lightgray }
+    s1: "idle" { style.fill: lightgray }
+    s2: "waiting" { style.fill: lightgray }
+    s3: "waiting" { style.fill: lightgray }
     s4: "executing" { style.fill: yellow }
 
-    s1 -> s2: "Step 2"
-    s2 -> s3: "Step 3"
-    s3 -> s4: "Step 4"
+    s0 -> s1: "Step  1" {style.font-size: 65} 
+    s1 -> s2: "Step 2" {style.font-size: 65} 
+    s2 -> s3: "Step 3" {style.font-size: 65} 
+    s3 -> s4: "Step 4" {style.font-size: 65} 
   }
+  **: {
+  style.font-size: 65
 }

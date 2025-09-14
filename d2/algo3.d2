@@ -1,77 +1,121 @@
-A3: {
-  label: "Algorithm 3 — Background (mixed)"
-
-  Priority_Event: {
+  Priority\nEvent: {
     s1: "active" { style.fill: red }
-    s2: "done" { style.fill: green }
+    s2: "done" { style.fill: limegreen }
+    s3: "done" { style.fill: limegreen }
+    
+    s5: "done" { style.fill: limegreen }
+    s6: "done" { style.fill: limegreen }
 
-    s1 -> s2: "Step 1A & 2A"
+    s1 -> s2: "Step 1A" {style.font-size: 65} 
+    s2 -> s3: "Step 2A" {style.font-size: 65} 
+    s3 -> s5: "Step 3A" {style.font-size: 65} 
+    
+    s5 -> s6: "Step 5" {style.font-size: 65} 
+    style.font-size: 45
   }
 
-  NonPriority_Event: {
+  NonPriority\nEvent: {
     s1: "active" { style.fill: red }
-    s2: "done" { style.fill: green }
-    s3: "done" { style.fill: green }
+    s2: "done" { style.fill: limegreen }
+    s3: "done" { style.fill: limegreen }
+    s4: "done" { style.fill: limegreen }
+    s5: "done" { style.fill: limegreen }
+    s6: "done" { style.fill: limegreen }
 
-    s1 -> s2: "Step 1B"
-    s2 -> s3: "Step 4B"
+    s1 -> s2: "Step 1B" {style.font-size: 65} 
+    s2 -> s3: "Step 2B" {style.font-size: 65} 
+    s3 -> s4: "Step 3B" {style.font-size: 65} 
+    s4 -> s5: "Step 4B" {style.font-size: 65} 
+    s5 -> s6: "Step 5" {style.font-size: 65} 
   }
 
-  Train_Prior: {
+  M31\nPrior: {
+    s0: "relevant" { style.fill: limegreen }
     s1: "obsolete" { style.fill: red }
-    s2: "relevant" { style.fill: green }
+    s2: "relevant" { style.fill: limegreen }
+    s4: "relevant" { style.fill: limegreen }
+    s5: "relevant" { style.fill: limegreen }
 
-    s1 -> s2: "Step 2A"
+
+    s0 -> s1: "Step 1A" {style.font-size: 65} 
+    s1 -> s2: "Step 2A" {style.font-size: 65} 
+    s2 -> s4: "Step 3A" {style.font-size: 65} 
+    s4 -> s5: "Step 5" {style.font-size: 65} 
   }
 
-  Train_NonPrior: {
+  M31\nNonPrior: {
+    s0: "relevant" { style.fill: limegreen }
     s1: "obsolete" { style.fill: red }
     s2: "building" { style.fill: orange }
-    s3: "relevant" { style.fill: green }
+    s3: "relevant" { style.fill: limegreen }
+    s4: "relevant" { style.fill: limegreen }
+    s5: "relevant" { style.fill: limegreen }
 
-    s1 -> s2: "Step 3B"
-    s2 -> s3: "Step 4B"
+    s0 -> s1: "Step 1B" {style.font-size: 65} 
+    s1 -> s2: "Step 2B" {style.font-size: 65} 
+    s2 -> s3: "Step 3B" {style.font-size: 65} 
+    s3 -> s4: "Step 4B" {style.font-size: 65} 
+    s4 -> s5: "Step 5" {style.font-size: 65} 
   }
 
-  Map_Prior: {
-    s1: "waiting" { style.fill: gray }
-    s2: "correcting" { style.fill: yellow }
-
-    s1 -> s2: "Step 2A"
-  }
-
-  Map_NonPrior: {
+  M21\nPrior: {
+    s0: "relevant" { style.fill: limegreen }
     s1: "obsolete" { style.fill: red }
-    s2: "building" { style.fill: orange }
-    s3: "relevant" { style.fill: green }
+    s2: "waiting" { style.fill: lightgray }
+    s3: "correcting" { style.fill: yellow }
+    s5: "relevant" { style.fill: limegreen }
 
-    s1 -> s2: "Step 3B"
-    s2 -> s3: "Step 4B"
+    s0 -> s1: "Step 1A" {style.font-size: 65} 
+    s1 -> s2: "Step 2A" {style.font-size: 65} 
+    s2 -> s3: "Step 3A" {style.font-size: 65} 
+    s3 -> s5: "Step 5" {style.font-size: 65} 
   }
 
-  Tile: {
-    s1: "waiting" { style.fill: gray }
+  M21\nNonPrior: {
+    s1: "relevant" { style.fill: limegreen }
+    s2: "relevant" { style.fill: limegreen }
+    s3: "obsolete" { style.fill: red }
+    s4: "building" { style.fill: orange }
+    s5: "relevant" { style.fill: limegreen }
+    s6: "relevant" { style.fill: limegreen }
+
+    s1 -> s2: "Step 1B" {style.font-size: 65} 
+    s2 -> s3: "Step 2B" {style.font-size: 65} 
+    s3 -> s4: "Step 3B" {style.font-size: 65} 
+    s4 -> s5: "Step 4B" {style.font-size: 65} 
+    s5 -> s6: "Step 5" {style.font-size: 65} 
+  }
+
+  M11: {
+    s0: "relevant" { style.fill: limegreen }
+    s1: "waiting" { style.fill: lightgray }
     s2: "correcting" { style.fill: yellow }
     s3: "partly obsolete" { style.fill: red }
     s4: "background update" { style.fill: orange }
-    s5: "relevant" { style.fill: green }
+    s5: "relevant" { style.fill: limegreen }
 
-    s1 -> s2: "Step 2A"
-    s2 -> s3: "Step 3B"
-    s3 -> s4: "Step 4B"
-    s4 -> s5: "Step 5"
+    s0 -> s1: "Step 1B" {style.font-size: 65} 
+    s1 -> s2: "Step 2B" {style.font-size: 65} 
+    s2 -> s3: "Step 3B" {style.font-size: 65} 
+    s3 -> s4: "Step 4B" {style.font-size: 65} 
+    s4 -> s5: "Step 5" {style.font-size: 65} 
   }
 
   Request: {
-    s1: "idle" { style.fill: gray }
-    s2: "waiting" { style.fill: gray }
-    s3: "waiting" { style.fill: gray }
-    s4: "waiting" { style.fill: gray }
+    s0: "idle" { style.fill: lightgray }
+    s1: "idle" { style.fill: lightgray }
+    s2: "waiting" { style.fill: lightgray }
+    s3: "waiting" { style.fill: lightgray }
+    s4: "waiting" { style.fill: lightgray }
     s5: "executing" { style.fill: yellow }
 
-    s1 -> s2: "Step 2A"
-    s2 -> s3: "Step 3B"
-    s3 -> s4: "Step 4B"
-    s4 -> s5: "Step 5"
+    s0 -> s1: "Step 1A" {style.font-size: 65} 
+    s1 -> s2: "Step 2A" {style.font-size: 65} 
+    s2 -> s3: "Step 3B" {style.font-size: 65} 
+    s3 -> s4: "Step 4B" {style.font-size: 65} 
+    s4 -> s5: "Step 5" {style.font-size: 65} 
   }
+
+**: {
+  style.font-size: 55
 }

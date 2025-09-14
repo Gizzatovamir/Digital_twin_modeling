@@ -1,0 +1,49 @@
+Queries:{
+    Q1
+    Q2
+    Q3
+}
+
+M0
+
+L1: ""
+
+L1:{
+    M11
+    M12
+    M13
+}
+
+L2: ""
+
+L2:{
+    M21
+    M22
+    M23
+}
+
+Events: {
+    E1
+    E2
+    E3
+    E4
+}
+
+Queries.Q1 -- M0
+Queries.Q2 -- M0
+Queries.Q3 -- M0
+
+
+M0 -- L1.M11
+M0 -- L1.M12
+M0 -- L1.M13
+
+L1.M11 -- L2.M21
+L1.M11 -- L2.M22
+L1.M11 -- L2.M23
+
+
+Events.E1 -- L2.M21
+Events.E2 -- L2.M21
+Events.E3 -- L2.M21
+Events.E4 -- L2.M22
