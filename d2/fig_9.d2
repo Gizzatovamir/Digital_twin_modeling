@@ -1,0 +1,180 @@
+CloudServices: {
+    label: "Cloud service"
+
+    Cloud1 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+
+    Cloud1.shape: circle
+    style: {
+        font-size: 48
+        stroke: transparent      
+        fill: transparent
+    }
+}
+Clusters: {
+    label: "Clusters"
+
+    Cluster1 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Cluster2 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Cluster3 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Cluster4 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Cluster5 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Cluster1.shape: circle
+    Cluster2.shape: circle
+    Cluster3.shape: circle
+    Cluster4.shape: circle
+    Cluster5.shape: circle
+    style: {
+        font-size: 48
+    }
+}
+
+SingleBoardComputers: {
+    label: "Single-board computers"
+
+    SBC1 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    SBC2 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    SBC3 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    SBC4 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    SBC5 : " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    SBC1.shape: circle
+    SBC2.shape: circle
+    SBC3.shape: circle
+    SBC4.shape: circle
+    SBC5.shape: circle
+    style: {
+        font-size: 48
+    }
+}
+
+SensorsAndActuators: {
+    label: "Sensors and actuators"
+
+    Sensor1: " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Sensor2: " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Sensor3: " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Sensor4: " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Sensor5: " " {
+        style: {
+        font-size:24
+        stroke: black
+        fill: black
+        }
+    }
+    Sensor1.shape: circle
+    Sensor2.shape: circle
+    Sensor3.shape: circle
+    Sensor4.shape: circle
+    Sensor5.shape: circle
+    style: {
+        font-size: 48
+    }
+}
+
+# Hierarchical connections (each connection styled with stroke-dash)
+CloudServices.Cloud1 -> Clusters.Cluster1: "" { style: { stroke-dash: 3 } }
+CloudServices.Cloud1 -> Clusters.Cluster2: "" { style: { stroke-dash: 3 } }
+CloudServices.Cloud1 -> Clusters.Cluster3: "" { style: { stroke-dash: 3 } }
+CloudServices.Cloud1 -> Clusters.Cluster4: "" { style: { stroke-dash: 3 } }
+CloudServices.Cloud1 -> Clusters.Cluster5: "" { style: { stroke-dash: 3 } }
+
+Clusters.Cluster1 -> SingleBoardComputers.SBC1: "" { style: { stroke-dash: 3 } }
+Clusters.Cluster1 -> SingleBoardComputers.SBC2: "" { style: { stroke-dash: 3 } }
+Clusters.Cluster1 -> SingleBoardComputers.SBC3: "" { style: { stroke-dash: 3 } }
+Clusters.Cluster1 -> SingleBoardComputers.SBC4: "" { style: { stroke-dash: 3 } }
+Clusters.Cluster1 -> SingleBoardComputers.SBC5: "" { style: { stroke-dash: 3 } }
+
+SingleBoardComputers.SBC1 -> SensorsAndActuators.Sensor1: "" { style: { stroke-dash: 3 } }
+SingleBoardComputers.SBC1 -> SensorsAndActuators.Sensor2: "" { style: { stroke-dash: 3 } }
+SingleBoardComputers.SBC1 -> SensorsAndActuators.Sensor3: "" { style: { stroke-dash: 3 } }
+SingleBoardComputers.SBC1 -> SensorsAndActuators.Sensor4: "" { style: { stroke-dash: 3 } }
+SingleBoardComputers.SBC1 -> SensorsAndActuators.Sensor5: "" { style: { stroke-dash: 3 } }

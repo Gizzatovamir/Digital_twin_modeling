@@ -2,10 +2,19 @@ A3: {
   label: "Algorithm 3 — Background (mixed)"
 
   Priority_Event: {
-    s1: "active" { style.fill: red }
+    s1: "active" { 
+      shape: rectangle
+      style: {
+        font-size: 10
+        fill: red
+        }
+      }
     s2: "done" { style.fill: green }
 
     s1 -> s2: "Step 1A & 2A"
+    style:{
+      font-size: dwa
+    }
   }
 
   NonPriority_Event: {

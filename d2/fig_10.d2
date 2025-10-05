@@ -1,0 +1,190 @@
+direction: down
+
+# Layer 1: Queries
+Queries: {
+  Q1: "Q" {
+    shape: rectangle
+    style:{
+        font-size: 36
+        fill: red
+    }
+  }
+  Q2: "Q" {
+    shape: rectangle
+    style:{
+        font-size: 36
+        fill: red
+    }
+  }
+  Q3: "Q" {
+    shape: rectangle
+    style:{
+        font-size: 36
+        fill: red
+    }
+  }
+  style: {
+        font-size: 36
+        stroke: transparent      
+        fill: transparent
+    }
+}
+
+# Layer 2: Models
+Models: {
+  label : " "
+  M0: |latex
+  \textcolor{black}{\huge M_{0}}
+|{
+    shape: circle
+    style:{
+        font-size: 32
+    }
+  }
+  style: {
+        font-size: 32
+        stroke: transparent      
+        fill: transparent
+    }
+}
+
+# Layer 3: Sub-models
+SubModels: {
+    label: " "
+  M1A: |latex
+  \textcolor{black}{\huge M_{i1}}
+| {
+    shape: circle
+  }
+  M1B: |latex
+  \textcolor{black}{\huge M_{ij}}
+| {
+    shape: circle
+    style:{
+        font-size: 32
+    }
+  }
+  M2A: |latex
+  \textcolor{black}{\huge M_{in}}
+| {
+    shape: circle
+    style:{
+        font-size: 32
+    }
+  }
+}
+
+# Layer 4: Deep models
+DeepModels: {
+  label: " "
+  M1A1: |latex
+  \textcolor{black}{\huge M_{n11}}
+| {
+    shape: circle
+    style:{
+        font-size: 32
+    }
+  }
+  M1B1: |latex
+  \textcolor{black}{\huge M_{nji}}
+| {
+    shape: circle
+    style:{
+        font-size: 32
+    }
+  }
+  M2A1: |latex
+  \textcolor{black}{\huge M_{njk}}
+| {
+    shape: circle
+    style:{
+        font-size: 32
+    }
+  }
+
+}
+
+# Layer 4: Deep models
+Devices: {
+  label: " "
+  D1: |latex
+  \textcolor{black}{\huge D_{1i1}}
+| {
+    shape: rectangle
+    style:{
+        font-size: 32
+    }
+  }
+  D2: |latex
+  \textcolor{black}{\huge D_{1ij}}
+| {
+    shape: rectangle
+    style:{
+        font-size: 32
+    }
+  }
+  D3: |latex
+  \textcolor{black}{\huge D_{1il}}
+| {
+    shape: rectangle
+    style:{
+        font-size: 32
+    }
+  }
+}
+
+# Layer 5: Events
+Events: {
+  label: "Events" 
+  E1: "" {
+    shape: circle
+    style:{
+        font-size: 32
+        fill: transparent
+        stroke: transparent
+    }
+  }
+  E2: "" {
+    shape: circle
+    style:{
+        font-size: 32
+        fill: transparent
+        stroke: transparent
+    }
+  }
+  E3: "" {
+    shape: circle
+    style:{
+        font-size: 32
+        fill: transparent
+        stroke: transparent
+    }
+  }
+  style: {
+        font-size: 48
+        fill: transparent
+        stroke: transparent
+    }
+}
+
+# Hierarchical connections (only events arrows reversed)
+Queries.Q1 -> Models.M0 { style: { stroke-dash: 3 } }
+Queries.Q2 -> Models.M0 { style: { stroke-dash: 3 } }
+Queries.Q3 -> Models.M0 { style: { stroke-dash: 3 } }
+
+Models.M0 -> SubModels.M1A { style: { stroke-dash: 3 } }
+Models.M0 -> SubModels.M1B { style: { stroke-dash: 3 } }
+Models.M0 -> SubModels.M2A { style: { stroke-dash: 3 } }
+
+SubModels.M1A -> DeepModels.M1A1 { style: { stroke-dash: 3 } }
+SubModels.M1A -> DeepModels.M1B1 { style: { stroke-dash: 3 } }
+SubModels.M1A -> DeepModels.M2A1 { style: { stroke-dash: 3 } }
+
+# Only these arrows are reversed (events pointing to deep models)
+DeepModels.M1A1 -> Devices.D1  { style: { stroke-dash: 3 } }
+DeepModels.M1A1 -> Devices.D2 { style: { stroke-dash: 3 } }
+DeepModels.M1A1 -> Devices.D3 { style: { stroke-dash: 3 } }
+
+Devices.D1 -- Events.E1  
+Devices.D2 -- Events.E2 
+Devices.D3 -- Events.E3 
