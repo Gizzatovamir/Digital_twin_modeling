@@ -1,3 +1,5 @@
 .idea
 __pycache__
-*.svg
+d2/*.svg
+d2/*.png
+d2/*.jpeg
