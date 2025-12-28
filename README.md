@@ -1,4 +1,8 @@
-Repo for digital Twin modeling
+## DTM
+
+Digital twin modeling
+
+## Abstract
 
 The article is devoted to digital twin systems usage
  focusing on utilizing them at the operational stage in cyber
@@ -27,3 +31,49 @@ physical and socio-cyber-physical systems building process. The
  
  Index Terms—Run-time digital twins, digital twin systems,
  digital twin synthesis, keeping the model system up-to-date.
+
+## Usage
+
+### install
+```shell
+git clone https://github.com/Gizzatovamir/Digital_twin_modeling.git
+cd Digital_twin_modeling
+```
+
+### env
+
+```shell
+python -m venv dt_env
+source dt_env/bin/activate
+pip install -r requirements.txt
+```
+
+
+### run separatly
+
+```shell
+#in first terminal
+python3 coordinate_publisher/create_publisher.py --name test_0
+
+#in second terminal
+python3 coordinate_publisher/create_publisher.py --name test_1
+
+#in third terminal
+python3 coordinate_publisher/create_publisher.py --name test_2
+
+#in fourth terminal
+python main.py
+```
+
+### run and draw plots
+
+```bash
+cd experiment_model/
+python3 main.py
+```
+
+## Citation
+
+```bibtex
+
+```
